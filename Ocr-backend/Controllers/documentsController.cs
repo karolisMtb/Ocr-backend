@@ -16,6 +16,7 @@ namespace Ocr_backend.Controllers
         [Route("certificate")]
         public async Task<IActionResult> certificate()
         {
+            
             Certificate certificate = new Certificate
             {
                 Institution = "Technische Hochschule Brandenburg",
@@ -42,8 +43,18 @@ namespace Ocr_backend.Controllers
                 Title = "Abschlusszeugnis"
                 
             };
+              return Ok(certificate);
+        }
 
-            return Ok(certificate);
+        [HttpPost]
+        [Route("image")]
+        public async Task<IActionResult> image(IFormFile file)
+        {
+            if(file != null)
+            {
+                return Ok(file);
+            }
+            return BadRequest("No file was received");
         }
 
     }
