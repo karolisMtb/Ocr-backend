@@ -12,9 +12,9 @@ namespace Ocr_backend.Controllers
             
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("certificate")]
-        public async Task<IActionResult> certificate()
+        public async Task<IActionResult> certificate(IFormFile file)
         {
             
             Certificate certificate = new Certificate
@@ -43,19 +43,11 @@ namespace Ocr_backend.Controllers
                 Title = "Abschlusszeugnis"
                 
             };
-              return Ok(certificate);
-        }
-
-        [HttpPost]
-        [Route("image")]
-        public async Task<IActionResult> image(IFormFile file)
-        {
             if(file != null)
             {
-                return Ok(file);
+              return Ok(certificate);
             }
-            return BadRequest("No file was received");
+            return BadRequest("Ivyko nesamone");
         }
-
     }
 }
